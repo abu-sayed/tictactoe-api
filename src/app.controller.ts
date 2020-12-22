@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 import GameResponse from './game.response';
 import { Response } from 'express';
 
-@Controller()
+@Controller('api')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -15,6 +15,11 @@ export class AppController {
   @Post('/init')
   initializeGame(): GameResponse {
     return this.appService.initialize();
+  }
+
+  @Get('/state')
+  getState(): GameResponse {
+    return this.appService.getState();
   }
 
   @Post('/play/:rowIndex/:columnIndex')

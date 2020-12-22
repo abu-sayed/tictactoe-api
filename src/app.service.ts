@@ -83,4 +83,11 @@ export class AppService {
   getResult(): number {
     return this.isCrossed() ? this.whoseTurn : (this.drawn() ? 0 : -1);
   }
+
+  getState(): GameResponse {
+    if (this.board.length === 0) {
+      return this.initialize();
+    }
+    return new GameResponse(this.board, this.whoseTurn, this.isGameOver(), this.getResult());
+  }
 }
